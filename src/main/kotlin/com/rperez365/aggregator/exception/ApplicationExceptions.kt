@@ -1,6 +1,5 @@
 package com.rperez365.aggregator.exception
 
-import org.apache.logging.log4j.message.Message
 import reactor.core.publisher.Mono
 
 object ApplicationExceptions {
