@@ -21,5 +21,5 @@ object RequestValidator {
 
     private fun hasTradeAction(dto: TradeRequest): Boolean = dto.action != null
 
-    private fun isValidQuantity(dto: TradeRequest): Boolean = dto.quantity != null && dto.quantity!! > 0
+    private fun isValidQuantity(dto: TradeRequest): Boolean = dto.quantity != null && dto.quantity > 0
 }
