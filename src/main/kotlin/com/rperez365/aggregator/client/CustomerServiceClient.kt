@@ -58,6 +58,8 @@ class CustomerServiceClient(
         val pd = exception.getResponseBodyAs(ProblemDetail::class.java)
         val message = pd?.detail ?: exception.message
 
+        logger.error("Customer service problem detail: $pd")
+
         return ApplicationExceptions.invalidTradeRequest(message)
     }
 
