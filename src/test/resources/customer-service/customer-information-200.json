@@ -1,0 +1,11 @@
+{
+  "id": "6842f8cb7f09348aa874ee91",
+  "name": "Sam",
+  "balance": 10000,
+  "holdings": [
+    {
+      "ticker": "GOOGLE",
+      "quantity": 2
+    }
+  ]
+}

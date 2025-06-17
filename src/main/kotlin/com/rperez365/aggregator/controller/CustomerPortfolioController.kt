@@ -20,8 +20,8 @@ class CustomerPortfolioController(
 ) {
 
     @GetMapping("/{customerId}")
-    fun getCusotmerInformation(@PathVariable cusotmerId: String): Mono<CustomerInformation> {
-        return customerPortfolioService.getCustomerInformation(cusotmerId)
+    fun getCusotmerInformation(@PathVariable customerId: String): Mono<CustomerInformation> {
+        return customerPortfolioService.getCustomerInformation(customerId)
     }
 
     @PostMapping("{customerId}/trade")
