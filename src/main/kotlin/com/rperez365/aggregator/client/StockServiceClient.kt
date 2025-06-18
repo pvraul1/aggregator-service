@@ -18,7 +18,7 @@ class StockServiceClient(
 
     companion object : KLogging()
 
-    private lateinit var flux: Flux<PriceUpdate>
+    private var flux: Flux<PriceUpdate>? = null
 
     fun getStockPrice(ticker: Ticker): Mono<StockPriceResponse> {
         return client.get()
@@ -27,7 +27,7 @@ class StockServiceClient(
             .bodyToMono(StockPriceResponse::class.java)
     }
 
-    fun priceUpdatesStream(): Flux<PriceUpdate> {
+    fun priceUpdatesStream(): Flux<PriceUpdate>? {
         if (Objects.isNull(this.flux)) {
             this.flux = this.getPriceUpdates()
         }

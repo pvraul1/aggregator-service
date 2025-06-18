@@ -15,6 +15,6 @@ class StockPriceStreamController(
 ) {
 
     @GetMapping("/price-stream", produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
-    fun priceUpdateStream() : Flux<PriceUpdate> = stockServiceClient.priceUpdatesStream()
+    fun priceUpdateStream() : Flux<PriceUpdate> = stockServiceClient.priceUpdatesStream()!!
 
 }

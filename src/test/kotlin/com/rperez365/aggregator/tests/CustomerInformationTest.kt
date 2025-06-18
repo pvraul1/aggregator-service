@@ -14,7 +14,6 @@ class CustomerInformationTest : AbstractIntegrationTest() {
 
         // mock customer service
         mockCustomerInformation("customer-service/customer-information-200.json", 200)
-        super.resourceToString("customer-service/customer-information-200.json")
 
         getCustomerInformation(HttpStatus.OK)
             .jsonPath("$.id").isEqualTo("6842f8cb7f09348aa874ee91")
@@ -29,7 +28,6 @@ class CustomerInformationTest : AbstractIntegrationTest() {
 
         // mock customer service
         mockCustomerInformation("customer-service/customer-information-404.json", 404)
-        super.resourceToString("customer-service/customer-information-200.json")
 
         getCustomerInformation(HttpStatus.NOT_FOUND)
             .jsonPath("$.detail").isEqualTo("Customer [id=6842f8cb7f09348aa874ee91] is not found")
