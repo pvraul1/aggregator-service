@@ -5,6 +5,7 @@ import com.rperez365.aggregator.dto.StockTradeResponse
 import com.rperez365.aggregator.dto.TradeRequest
 import com.rperez365.aggregator.service.CustomerPortfolioService
 import com.rperez365.aggregator.validator.RequestValidator
+import mu.KLogging
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,6 +20,8 @@ class CustomerPortfolioController(
     private val customerPortfolioService: CustomerPortfolioService
 ) {
 
+    companion object : KLogging()
+
     @GetMapping("/{customerId}")
     fun getCusotmerInformation(@PathVariable customerId: String): Mono<CustomerInformation> {
         return customerPortfolioService.getCustomerInformation(customerId)
@@ -26,6 +29,9 @@ class CustomerPortfolioController(
 
     @PostMapping("/{customerId}/trade")
     fun trade(@PathVariable customerId: String, @RequestBody mono: Mono<TradeRequest>): Mono<StockTradeResponse> {
+
+        logger.info { "trade service (in agregator-service controller) was called!" }
+
         return mono.transform(RequestValidator.validate())
             .flatMap { req -> customerPortfolioService.trade(customerId, req) }
     }
