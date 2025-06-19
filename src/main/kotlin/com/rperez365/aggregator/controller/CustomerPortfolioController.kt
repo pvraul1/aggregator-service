@@ -24,10 +24,10 @@ class CustomerPortfolioController(
         return customerPortfolioService.getCustomerInformation(customerId)
     }
 
-    @PostMapping("{customerId}/trade")
-    fun trade(@PathVariable cusotmerId: String, @RequestBody mono: Mono<TradeRequest>): Mono<StockTradeResponse> {
+    @PostMapping("/{customerId}/trade")
+    fun trade(@PathVariable customerId: String, @RequestBody mono: Mono<TradeRequest>): Mono<StockTradeResponse> {
         return mono.transform(RequestValidator.validate())
-            .flatMap { req -> customerPortfolioService.trade(cusotmerId, req) }
+            .flatMap { req -> customerPortfolioService.trade(customerId, req) }
     }
 
 }
